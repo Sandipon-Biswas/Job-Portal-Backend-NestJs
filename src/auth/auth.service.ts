@@ -13,19 +13,19 @@ export class AuthService {
     private readonly jwt: JwtService,
   ) {}
 
-  // ✅ Safe sign() method (expiresIn & secret handled)
+  //  Safe sign() method (expiresIn & secret handled)
   private sign(payload: Record<string, any>) {
     return this.jwt.sign(payload, {
       secret: "abc",
-      expiresIn:  '7d', // ✅ Fix TS error
+      expiresIn:  '7d', //  Fix TS error
     });
   }
 
-  // ✅ REGISTER
+  // REGISTER
   async register(dto: CreateUserDto) {
     const user = await this.usersService.create(dto);
 
-    // ✅ Safe ObjectId → String
+    //  Safe ObjectId → String
     const userId = (user._id as Types.ObjectId).toString();
 
     const token = this.sign({
@@ -36,18 +36,18 @@ export class AuthService {
     return { accessToken: token, user };
   }
 
-  // ✅ LOGIN
+  // LOGIN
   async login(dto: LoginDto) {
     const user = await this.usersService.findByEmail(dto.email, true);
     if (!user) throw new UnauthorizedException('Invalid credentials');
 
-    // ✅ password verify
+    //  password verify
     const ok = await bcrypt.compare(dto.password, (user as any).password);
     if (!ok) throw new UnauthorizedException('Invalid credentials');
 
     if (user.banned) throw new UnauthorizedException('Account banned');
 
-    // ✅ Safe ObjectId → String
+    //  Safe ObjectId → String
     const userId = (user._id as Types.ObjectId).toString();
 
     const token = this.sign({
