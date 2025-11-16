@@ -40,14 +40,14 @@ A complete **Job Portal Backend API** built with **NestJS**, featuring **role-ba
 ---
 
 ## 📁 Project Structure
-src/
-├── auth/
-├── users/
-├── jobs/
-├── applications/
-├── upload/
-├── common/
-└── main.ts
+src/<br>
+├── auth/<br>
+├── users/<br>
+├── jobs/<br>
+├── applications/<br>
+├── upload/<br>
+├── common/<br>
+└── main.ts<br>
 
 
 # 🚀 API Endpoints Guide (Job Board Backend)
@@ -108,4 +108,5 @@ All protected endpoints require a **JWT (JSON Web Token)**.
 | **`POST`** | `/upload/photo` | Upload a photo file (e.g., profile picture). | `multipart/form-data` | `file` |
 | **`POST`** | `/upload/cv` | Upload a CV/document file. | `multipart/form-data` | `file` |
 | **Note:** The `PATCH /users/photo` and `PATCH /users/cv` endpoints are designed to update the user's profile with a URL *after* the file has been successfully uploaded using the `/upload` endpoints.
+
 
